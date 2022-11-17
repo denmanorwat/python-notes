@@ -1,0 +1,20 @@
+version: "3"
+services:
+  server:
+    build: server/
+    command: python3 ./server/main.py
+    ports:
+      - 65432:65432
+    depends_on:
+      - redis
+  client:
+    build: frontend/
+    command: flask --app ./frontend/application.py run
+    network_mode: host
+    depends_on:
+      - server
+  redis:
+    image: redis:bullseye
+    command: ["redis-server", "--bind", "redis", "--port", "6379"]
+    ports: 
+    - 6379:6379

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Записная книжка</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <style>
+   #text {
+    width: 600px;/* Ширина слоя */
+    margin-top: 20px; /* Поля вокруг текста */
+    margin-bottom: 3px;
+   }
+  </style>
+
+<style>
+   #tags {
+    width: 600px;/* Ширина слоя */
+    margin-bottom: 3px;
+   }
+  </style>
+
+<style>
+   #date {
+    width: 600px;/* Ширина слоя */
+   }
+  </style>
+
+<style>
+  #buttons {
+      display: flex;
+  }
+  </style>
+ </head>
+ <body>
+ <h1> Welcome to your note list! </h1>
+ {% if filtration_tags == None %}
+ <h3>There is no filtration by tags</h3>
+ {% else %}
+ <h3>There is filtration by next tags: </h3>
+ <p> {% for tag in filtration_tags %}
+     {{tag}};
+     {% endfor %} </p>
+ {% endif %}
+ {% if interval == None %}
+ <h3> There is no filtration by dates </h3>
+ {% else %}
+ <h3> There is filtration by dates: </h3>
+ <p> From {{interval[0]}} to {{interval[1]}} </p>
+ {% endif %}
+ <form method="post">
+    {{create_button.create_form_button}}
+    {{filter_button.filter_notes_button}}
+    {{reset_button.reset_filtering_button}}
+ </form>
+    {% for i in range(len_entries) %}
+  <div id="text">
+    {{entries[i].text}}
+  </div>
+  <div id="tags">
+    {% for tag in entries[i].tags %}
+      {{tag}};
+    {% endfor %}
+  </div>
+  <div id="date">
+    {{entries[i].date}}
+  </div>
+<div id="buttons">
+<form method="post">
+  {{forms[i].hidden_id}}
+  {{forms[i].edit_button}}
+  {{forms[i].delete_button}}
+</form>
+</div>
+    {% endfor %}
+ </body>
+</html>

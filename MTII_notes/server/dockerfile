@@ -1,0 +1,9 @@
+FROM ubuntu:focal
+RUN apt-get update \
+ && apt-get install --assume-yes --no-install-recommends --quiet \
+        python3 \
+        python3-pip \
+ && apt-get clean all
+RUN apt-get install -y redis
+RUN pip install redis
+ADD server_code ./server
