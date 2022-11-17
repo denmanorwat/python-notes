@@ -6,7 +6,7 @@
   2.1 python:3.9-slim  
   2.2 ubuntu:focal  
   2.3 redis:bullseye  
-3. После, зайти в папку MTII-notes, и выполнить docker-compose build, docker-compose up.
+3. После, зайти в папку MTII-notes (с помощью команды cd в linux), и выполнить docker-compose build, docker-compose up.
 4. Затем. зайти в приложение по адресу (localhost:5000 или 127.0.0.1:5000)
 # Как устроено приложение?  
 При первом запуске вы попадаете на главный экран приложения. Вы можете создать записку (Create new note), отфильтровать записки по тегам и/или датам (Filter notes), и сбросить фильтрацию (Delete all filters).  
